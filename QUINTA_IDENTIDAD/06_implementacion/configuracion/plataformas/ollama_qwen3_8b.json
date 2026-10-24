@@ -1,0 +1,88 @@
+{
+  "id": "ollama_qwen3_8b",
+  "descripcion": "Ollama del SSD con Qwen3 8B (comparador del plan). Configuración preparada; las conversaciones reales no están autorizadas.",
+  "adaptador": {
+    "tipo": "ollama",
+    "host": "http://127.0.0.1:11434",
+    "modelo": "qwen3:8b",
+    "ejecutable_ollama": "/Volumes/NOUS/local-statistical-ai/proyecto/work/ollama/ollama",
+    "almacen_modelos": "/Volumes/NOUS/local-statistical-ai/models",
+    "manifiesto": "registry.ollama.ai/library/qwen3/8b",
+    "opciones": {
+      "temperature": 0.7,
+      "num_ctx": 8192
+    },
+    "think": false,
+    "keep_alive": "10m",
+    "tiempo_espera_s": 600,
+    "memoria_libre_minima_porcentaje": 40,
+    "permitir_conversaciones_reales": false,
+    "_nota": "Mismas opciones que ollama_qwen35 para comparar en igualdad de condiciones."
+  },
+  "instrucciones": "${IMPL}/configuracion/instrucciones/harry_borrador_0.2.md",
+  "capacidades": {
+    "memoria_entre_sesiones": false,
+    "herramientas": [],
+    "contactar_terceros": false,
+    "lectores_de_conversaciones": "el custodio puede leer las corridas de evaluación (conversaciones sintéticas)"
+  },
+  "contexto": {
+    "ventana_tokens": 8192,
+    "reserva_respuesta_tokens": 1024,
+    "max_turnos_historial": 12,
+    "estimacion": {
+      "caracteres_por_token": 3.0,
+      "tokens_por_mensaje": 6
+    },
+    "_nota": "Estimación conservadora sin tokenizador (ver codigo/harry_nucleo/tokens.py). La ventana debe coincidir con num_ctx del modelo."
+  },
+  "recuperacion": {
+    "activa": true,
+    "indice": "${IMPL}/recuperacion/indice.json",
+    "categorias": [
+      "norma_propuesta"
+    ],
+    "bajo_demanda": {
+      "investigacion": {
+        "disparadores": [
+          "heidegger",
+          "dumbledore",
+          "rowling",
+          "harry potter",
+          "papa francisco",
+          "bergoglio",
+          "dostoievski",
+          "dostoyevski",
+          "karamazov",
+          "kirilov",
+          "raskolnikov",
+          "myshkin",
+          "stavroguin",
+          "ser y tiempo",
+          "enciclica",
+          "evangelii",
+          "laudato",
+          "fratelli",
+          "amoris",
+          "dilexit",
+          "antiqua et nova",
+          "scalfari",
+          "gran inquisidor",
+          "bajtin",
+          "guardini",
+          "levinas",
+          "arendt",
+          "jaspers",
+          "trakl"
+        ],
+        "_nota": "La investigación solo se busca si la consulta nombra a un referente o a una obra suya."
+      }
+    },
+    "max_fragmentos": 3,
+    "max_tokens": 900,
+    "relativo_minimo": 0.35,
+    "puntaje_minimo": 1.0,
+    "_nota": "Por defecto, solo normas propuestas pertinentes. El Anexo A (en revisión) y las versiones archivadas nunca se envían."
+  },
+  "recursos_ayuda": "${IMPL}/configuracion/recursos_ayuda.json"
+}

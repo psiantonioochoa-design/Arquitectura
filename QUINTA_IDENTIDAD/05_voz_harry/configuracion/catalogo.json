@@ -1,0 +1,99 @@
+{
+  "_nota": "Catálogo de motores y voces. Cada dato lleva su estado de verificación. 'verificado' significa comprobado en una fuente oficial el 24-oct-2026 (ver investigacion/motores.md). 'por verificar' significa que no se pudo consultar: Hugging Face estaba bloqueado en la sesión de la nube. Los tamaños estimados se confirman con instalar/consultar_modelos.py antes de cualquier descarga.",
+  "version": "2026-10-24",
+  "motores": {
+    "piper": {
+      "nombre": "Piper (OHF-Voice/piper1-gpl)",
+      "paquete": "piper-tts==1.8.0",
+      "python": ">=3.9",
+      "licencia_codigo": "GPL-3.0-or-later (verificado: PyPI y COPYING del repositorio)",
+      "licencia_codigo_anterior": "MIT (rhasspy/piper, archivado; verificado)",
+      "repo_pesos": "rhasspy/piper-voices",
+      "revision_pesos": "v1.0.0",
+      "aceleracion": "CPU con onnxruntime; hay rueda para macOS arm64 (verificado en PyPI). No necesita GPU",
+      "controles_nativos": {
+        "velocidad": {"parametro": "length_scale", "nota": "length_scale = 1 / velocidad"},
+        "variacion": {"parametro": "noise_scale", "min": 0.0, "max": 1.0, "defecto": 0.667, "nota": "variabilidad de la entonación"},
+        "ritmo": {"parametro": "noise_w_scale", "min": 0.0, "max": 1.0, "defecto": 0.8, "nota": "variabilidad de la duración de los fonemas"},
+        "hablante": {"parametro": "speaker_id", "nota": "solo en voces de varios hablantes"}
+      },
+      "timbre_nativo": "no",
+      "tamano_estimado_mb": {"medium": 63, "high": 114, "low": 63, "x_low": 28},
+      "estado_descarga": "ligero; se descarga con instalar/descargar_modelos.py --autorizo"
+    },
+    "kokoro": {
+      "nombre": "Kokoro-82M (hexgrad)",
+      "paquete": "kokoro==0.9.4, misaki[en]==0.9.4, soundfile",
+      "python": ">=3.10,<3.13 (PyPI 0.9.4)",
+      "licencia_codigo": "Apache-2.0 (verificado: LICENSE de hexgrad/kokoro)",
+      "licencia_pesos": "Apache-2.0 según el README oficial («Apache-licensed weights»); la tarjeta del modelo en Hugging Face está por verificar",
+      "dependencia_gpl": "El español (lang_code 'e') usa eSpeak NG (GPL-3.0) para la fonetización, a través de misaki/phonemizer",
+      "repo_pesos": "hexgrad/Kokoro-82M",
+      "archivos_base": ["kokoro-v1_0.pth", "config.json"],
+      "aceleracion": "CPU; en Apple Silicon, MPS con PYTORCH_ENABLE_MPS_FALLBACK=1 según el README oficial (por medir)",
+      "controles_nativos": {
+        "velocidad": {"parametro": "speed", "min": 0.5, "max": 2.0, "defecto": 1.0},
+        "mezcla_de_voces": {"parametro": "voice='a,b'", "nota": "promedia los estilos de varias voces: es la única personalización de timbre nativa"}
+      },
+      "timbre_nativo": "mezcla de voces",
+      "tamano_estimado_mb": {"modelo": 327, "voz": 0.5},
+      "estado_descarga": "ligero (~330 MB); se descarga con instalar/descargar_modelos.py --autorizo"
+    },
+    "chatterbox": {
+      "nombre": "Chatterbox Multilingual (Resemble AI)",
+      "paquete": "chatterbox-tts==0.1.7 (PyPI: solo Multilingual V2) o el código de GitHub en una revisión fijada (V3)",
+      "python": ">=3.10 (desarrollado con 3.11)",
+      "licencia_codigo": "MIT (verificado: LICENSE de resemble-ai/chatterbox)",
+      "licencia_pesos": "por verificar en la tarjeta del modelo de Hugging Face",
+      "marca_de_agua": "Todo audio generado lleva la marca de agua Perth de Resemble AI (verificado: README)",
+      "repo_pesos": "ResembleAI/chatterbox",
+      "archivos_base_v2": ["ve.pt", "t3_mtl23ls_v2.safetensors", "s3gen.pt", "grapheme_mtl_merged_expanded_v1.json", "conds.pt", "Cangjie5_TC.json"],
+      "archivo_v3": "t3_mtl23ls_v3.safetensors",
+      "paquete_es_mx": "ResembleAI/Chatterbox-Multilingual-es-mx-latam (existe según el README; archivos y licencia por verificar)",
+      "aceleracion": "El código acepta device='cpu' o 'mps' (verificado en mtl_tts.py). Rendimiento en el M4 por medir",
+      "controles_nativos": {
+        "expresividad": {"parametro": "exaggeration", "min": 0.25, "max": 2.0, "defecto": 0.5, "nota": "por encima de ~0.7 tiende a la dramatización y acelera el habla (README)"},
+        "guia": {"parametro": "cfg_weight", "min": 0.0, "max": 1.0, "defecto": 0.5, "nota": "más bajo da un ritmo más pausado"},
+        "temperatura": {"parametro": "temperature", "min": 0.05, "max": 2.0, "defecto": 0.8}
+      },
+      "velocidad_nativa": "no (se ajusta con cfg_weight o con posproceso, marcado como tal)",
+      "timbre_nativo": "solo con una grabación de referencia (clonación). No hay ninguna autorizada",
+      "tamano_estimado_mb": {"v2": 3200, "v3_adicional": 2100, "entorno_python": 1800},
+      "estado_descarga": "GRANDE: autorizado por el custodio el 24-oct-2026 (en la Mac y en la nube); cada descarga se confirma con --autorizo --autorizo-grande"
+    },
+    "espeak_prueba": {
+      "nombre": "eSpeak NG (motor de PRUEBA de la tubería; no es candidato para la voz de Harry)",
+      "paquete": "espeakng-loader==0.2.4, numpy",
+      "licencia_codigo": "GPL-3.0 (eSpeak NG)",
+      "uso": "Solo comprueba la tubería de punta a punta (síntesis, WAV, metadatos, métricas, interfaz) donde los modelos neuronales no están disponibles. Voz de formantes, robótica",
+      "controles_nativos": {
+        "velocidad": {"parametro": "rate", "nota": "palabras por minuto; 175 × velocidad"},
+        "tono": {"parametro": "pitch", "min": 0, "max": 100, "defecto": 50}
+      },
+      "timbre_nativo": "variantes de eSpeak (m1–m7)",
+      "estado_descarga": "no descarga modelos; los datos vienen dentro del paquete de PyPI"
+    }
+  },
+  "voces": [
+    {"motor": "kokoro", "id": "bm_george", "idiomas": ["en"], "lang_code": "b", "acento": "inglés británico", "genero_declarado": "masculino", "calificacion_autor": "objetivo B · general C", "verificacion": "verificado en hexgrad/kokoro, kokoro.js/src/voices.js", "prioridad": 1},
+    {"motor": "kokoro", "id": "bm_fable", "idiomas": ["en"], "lang_code": "b", "acento": "inglés británico", "genero_declarado": "masculino", "calificacion_autor": "objetivo B · general C", "verificacion": "verificado en hexgrad/kokoro, kokoro.js/src/voices.js", "prioridad": 1},
+    {"motor": "kokoro", "id": "bm_lewis", "idiomas": ["en"], "lang_code": "b", "acento": "inglés británico", "genero_declarado": "masculino", "calificacion_autor": "objetivo C · general D+", "verificacion": "verificado en hexgrad/kokoro, kokoro.js/src/voices.js", "prioridad": 2},
+    {"motor": "kokoro", "id": "bm_daniel", "idiomas": ["en"], "lang_code": "b", "acento": "inglés británico", "genero_declarado": "masculino", "calificacion_autor": "objetivo C · general D", "verificacion": "verificado en hexgrad/kokoro, kokoro.js/src/voices.js", "prioridad": 2},
+    {"motor": "kokoro", "id": "em_alex", "idiomas": ["es"], "lang_code": "e", "acento": "español (fonetización eSpeak 'es'; variante no declarada)", "genero_declarado": "masculino", "calificacion_autor": "objetivo C · general D", "verificacion": "verificado en hexgrad/kokoro, kokoro.js/src/voices.js (comentada: kokoro.js no la usa; la biblioteca de Python sí)", "prioridad": 1},
+    {"motor": "kokoro", "id": "em_santa", "idiomas": ["es"], "lang_code": "e", "acento": "español", "genero_declarado": "masculino", "calificacion_autor": "objetivo C · general D", "verificacion": "verificado en hexgrad/kokoro, kokoro.js/src/voices.js (comentada)", "prioridad": 3, "nota": "Por el nombre, puede ser una voz de personaje; riesgo de teatralidad"},
+    {"motor": "kokoro", "id": "bm_george", "variante": "es_experimental", "idiomas": ["es"], "lang_code": "e", "acento": "voz británica leyendo español con fonetización eSpeak", "genero_declarado": "masculino", "verificacion": "combinación técnicamente posible en la API; calidad desconocida", "prioridad": 2, "experimental": true, "nota": "Experimento de consistencia de timbre entre idiomas: probablemente con acento"},
+    {"motor": "kokoro", "id": "bm_george,bm_fable", "idiomas": ["en"], "lang_code": "b", "acento": "inglés británico (mezcla de dos voces)", "genero_declarado": "masculino", "verificacion": "la mezcla con comas es nativa de la API (KPipeline.load_voice)", "prioridad": 2, "experimental": true},
+    {"motor": "piper", "id": "en_GB-alan-medium", "idiomas": ["en"], "acento": "inglés británico (región no declarada en la lista)", "genero_declarado": "no declarado en la lista; ver MODEL_CARD", "verificacion": "existe en VOICES.md oficial (rhasspy/piper)", "archivos": ["en/en_GB/alan/medium/en_GB-alan-medium.onnx", "en/en_GB/alan/medium/en_GB-alan-medium.onnx.json", "en/en_GB/alan/medium/MODEL_CARD"], "prioridad": 1},
+    {"motor": "piper", "id": "en_GB-northern_english_male-medium", "idiomas": ["en"], "acento": "norte de Inglaterra (no es el sur pedido)", "genero_declarado": "masculino (en el nombre)", "verificacion": "existe en VOICES.md oficial", "archivos": ["en/en_GB/northern_english_male/medium/en_GB-northern_english_male-medium.onnx", "en/en_GB/northern_english_male/medium/en_GB-northern_english_male-medium.onnx.json", "en/en_GB/northern_english_male/medium/MODEL_CARD"], "prioridad": 2},
+    {"motor": "piper", "id": "en_GB-vctk-medium", "idiomas": ["en"], "acento": "varios hablantes del corpus VCTK, con acentos de distintas regiones; elegir hablante tras leer el .onnx.json", "genero_declarado": "varios", "verificacion": "existe en VOICES.md oficial", "archivos": ["en/en_GB/vctk/medium/en_GB-vctk-medium.onnx", "en/en_GB/vctk/medium/en_GB-vctk-medium.onnx.json", "en/en_GB/vctk/medium/MODEL_CARD"], "prioridad": 3, "nota": "Los hablantes de VCTK son mayoritariamente jóvenes; difícil que den una edad aparente de 45–55"},
+    {"motor": "piper", "id": "en_GB-semaine-medium", "idiomas": ["en"], "acento": "inglés británico; personajes del corpus SEMAINE", "genero_declarado": "varios", "verificacion": "existe en VOICES.md oficial", "archivos": ["en/en_GB/semaine/medium/en_GB-semaine-medium.onnx", "en/en_GB/semaine/medium/en_GB-semaine-medium.onnx.json", "en/en_GB/semaine/medium/MODEL_CARD"], "prioridad": 3, "nota": "Voces de personajes con emoción marcada; riesgo de teatralidad"},
+    {"motor": "piper", "id": "es_MX-claude-high", "idiomas": ["es"], "acento": "español de México", "genero_declarado": "no declarado en la lista; ver MODEL_CARD", "verificacion": "existe en VOICES.md oficial", "archivos": ["es/es_MX/claude/high/es_MX-claude-high.onnx", "es/es_MX/claude/high/es_MX-claude-high.onnx.json", "es/es_MX/claude/high/MODEL_CARD"], "prioridad": 1},
+    {"motor": "piper", "id": "es_MX-ald-medium", "idiomas": ["es"], "acento": "español de México", "genero_declarado": "no declarado en la lista; ver MODEL_CARD", "verificacion": "existe en VOICES.md oficial", "archivos": ["es/es_MX/ald/medium/es_MX-ald-medium.onnx", "es/es_MX/ald/medium/es_MX-ald-medium.onnx.json", "es/es_MX/ald/medium/MODEL_CARD"], "prioridad": 1},
+    {"motor": "piper", "id": "es_ES-davefx-medium", "idiomas": ["es"], "acento": "español de España", "genero_declarado": "no declarado en la lista; ver MODEL_CARD", "verificacion": "existe en VOICES.md oficial", "archivos": ["es/es_ES/davefx/medium/es_ES-davefx-medium.onnx", "es/es_ES/davefx/medium/es_ES-davefx-medium.onnx.json", "es/es_ES/davefx/medium/MODEL_CARD"], "prioridad": 3},
+    {"motor": "chatterbox", "id": "predeterminada", "idiomas": ["es", "en"], "acento": "el de la voz incluida (conds.pt); el inglés no tiene acento británico garantizado", "genero_declarado": "no declarado; por escuchar", "verificacion": "conds.pt existe como voz incluida en el código (mtl_tts.py)", "prioridad": 1, "nota": "Sin una grabación de referencia autorizada, es la única voz disponible; puede no parecerse al perfil pedido"},
+    {"motor": "espeak_prueba", "id": "es-419+m3", "idiomas": ["es"], "acento": "español latinoamericano de eSpeak NG", "genero_declarado": "variante masculina m3", "verificacion": "probado en la nube", "prioridad": 9, "prueba_de_tuberia": true},
+    {"motor": "espeak_prueba", "id": "gmw/en-GB-x-rp+m3", "idiomas": ["en"], "acento": "inglés británico, Received Pronunciation (eSpeak NG)", "genero_declarado": "variante masculina m3", "verificacion": "probado en la nube", "prioridad": 9, "prueba_de_tuberia": true}
+  ],
+  "referencias_de_voz_autorizadas": [],
+  "_referencias": "Ninguna grabación está autorizada para clonar o adaptar una voz. No se imitan actores ni personas reconocibles. Para añadir una, el custodio la registra aquí con su origen y el consentimiento expreso de la persona grabada."
+}

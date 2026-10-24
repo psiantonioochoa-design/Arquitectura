@@ -1,0 +1,4 @@
+# Chatterbox Multilingual (Resemble AI). Código: MIT. Pesos: licencia por verificar en Hugging Face.
+# chatterbox-tts 0.1.7 de PyPI trae Multilingual V2. Para V3, crear_entornos.sh instala el código de GitHub
+# en el commit que tenga la rama principal ese día y lo deja anotado en entornos/chatterbox/INSTALADO.txt.
+chatterbox-tts==0.1.7

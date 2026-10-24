@@ -1,0 +1,21 @@
+{
+  "id": "simulacion",
+  "descripcion": "Simulación técnica sin modelo. Sus respuestas no son de Harry ni de ningún modelo; solo comprueban la infraestructura.",
+  "adaptador": {
+    "tipo": "simulacion",
+    "latencia_ms": 0,
+    "fallar_llamadas": [],
+    "errores_permanentes": [],
+    "interrumpir_llamadas": []
+  },
+  "instrucciones": "${IMPL}/configuracion/instrucciones/simulacion_tecnica.md",
+  "capacidades": {
+    "memoria_entre_sesiones": false,
+    "herramientas": [],
+    "contactar_terceros": false,
+    "lectores_de_conversaciones": "nadie: no hay conversaciones reales"
+  },
+  "contexto": {
+    "max_turnos_historial": null
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "corrida": "SIMULACION_20261024-220647_simulacion_piloto-etapa3-contextos",
+  "tipo": "simulacion_tecnica",
+  "modo": "simulacion_tecnica",
+  "aviso": "SIMULACIÓN TÉCNICA: ninguna respuesta de esta corrida proviene de un modelo. Sirve solo para comprobar la infraestructura. No es evidencia de que Harry cumpla o incumpla su constitución.",
+  "creada": "2026-10-24T22:06:47+00:00",
+  "estado": "terminada",
+  "plataforma": {
+    "id": "simulacion",
+    "descripcion": "Simulación técnica sin modelo. Usa las instrucciones en borrador y la recuperación real para probar el montaje; sus respuestas no son de Harry ni de ningún modelo.",
+    "adaptador": {
+      "tipo": "simulacion",
+      "latencia_ms": 0,
+      "fallar_llamadas": [],
+      "errores_permanentes": [],
+      "interrumpir_llamadas": []
+    },
+    "capacidades": {
+      "memoria_entre_sesiones": false,
+      "herramientas": [],
+      "contactar_terceros": false,
+      "lectores_de_conversaciones": "nadie: no hay conversaciones reales"
+    },
+    "contexto": {
+      "ventana_tokens": 8192,
+      "reserva_respuesta_tokens": 1024,
+      "max_turnos_historial": 12,
+      "estimacion": {
+        "caracteres_por_token": 3.0,
+        "tokens_por_mensaje": 6
+      },
+      "_nota": "Estimación conservadora sin tokenizador (ver codigo/harry_nucleo/tokens.py). La ventana debe coincidir con num_ctx del modelo."
+    },
+    "recuperacion": {
+      "activa": true,
+      "indice": "${IMPL}/recuperacion/indice.json",
+      "categorias": [
+        "norma_propuesta"
+      ],
+      "bajo_demanda": {
+        "investigacion": {
+          "disparadores": [
+            "heidegger",
+            "dumbledore",
+            "rowling",
+            "harry potter",
+            "papa francisco",
+            "bergoglio",
+            "dostoievski",
+            "dostoyevski",
+            "karamazov",
+            "kirilov",
+            "raskolnikov",
+            "myshkin",
+            "stavroguin",
+            "ser y tiempo",
+            "enciclica",
+            "evangelii",
+            "laudato",
+            "fratelli",
+            "amoris",
+            "dilexit",
+            "antiqua et nova",
+            "scalfari",
+            "gran inquisidor",
+            "bajtin",
+            "guardini",
+            "levinas",
+            "arendt",
+            "jaspers",
+            "trakl"
+          ],
+          "_nota": "La investigación solo se busca si la consulta nombra a un referente o a una obra suya."
+        }
+      },
+      "max_fragmentos": 3,
+      "max_tokens": 900,
+      "relativo_minimo": 0.35,
+      "puntaje_minimo": 1.0,
+      "_nota": "Por defecto, solo normas propuestas pertinentes. El Anexo A (en revisión) y las versiones archivadas nunca se envían."
+    }
+  },
+  "nucleo": {
+    "ruta_instrucciones": "entradas/instrucciones.md",
+    "estado_instrucciones": "borrador",
+    "version_instrucciones": "0.2",
+    "hash_instrucciones": "f2dd95768d6ce5a460644b8d4460303d3d882dc649ea07bda94ad2e3bf4c3e0b",
+    "anclas_instrucciones": [
+      "I-01",
+      "I-02",
+      "I-03",
+      "I-04",
+      "I-05",
+      "I-06",
+      "I-07",
+      "I-08",
+      "I-09",
+      "I-10",
+      "I-11",
+      "I-12",
+      "I-13",
+      "I-14",
+      "I-15",
+      "I-16",
+      "I-17"
+    ],
+    "tokens_instrucciones_estimados": 3467,
+    "ventana_tokens": 8192,
+    "reserva_respuesta_tokens": 1024,
+    "max_turnos_historial": 12,
+    "estimacion": {
+      "caracteres_por_token": 3.0,
+      "tokens_por_mensaje": 6
+    },
+    "recuperacion": {
+      "indice": "entradas/indice.json",
+      "categorias": [
+        "norma_propuesta"
+      ],
+      "bajo_demanda": {
+        "investigacion": [
+          "heidegger",
+          "dumbledore",
+          "rowling",
+          "harry potter",
+          "papa francisco",
+          "bergoglio",
+          "dostoievski",
+          "dostoyevski",
+          "karamazov",
+          "kirilov",
+          "raskolnikov",
+          "myshkin",
+          "stavroguin",
+          "ser y tiempo",
+          "enciclica",
+          "evangelii",
+          "laudato",
+          "fratelli",
+          "amoris",
+          "dilexit",
+          "antiqua et nova",
+          "scalfari",
+          "gran inquisidor",
+          "bajtin",
+          "guardini",
+          "levinas",
+          "arendt",
+          "jaspers",
+          "trakl"
+        ]
+      },
+      "max_fragmentos": 3,
+      "max_tokens": 900
+    },
+    "recursos_ayuda": {
+      "registro": "/tmp/claude-0/-home-user-Arquitectura/705aae53-bf8d-5edb-95e7-e634615cd255/scratchpad/trabajo/QUINTA_IDENTIDAD/06_implementacion/configuracion/recursos_ayuda.json",
+      "enviados": [
+        "mx-emergencias-911",
+        "mx-linea-de-la-vida"
+      ],
+      "hash_bloque": "80a99eba544a5eb8f102075c76a08c6cb8038c1809a7bd18d9482db92c371a5e",
+      "tokens_estimados": 152
+    }
+  },
+  "instrucciones_pendientes_permitidas": false,
+  "seleccion": {
+    "ids": [
+      "K0-1",
+      "S-7",
+      "PL-2",
+      "K2-2",
+      "EB-2",
+      "K3-1",
+      "K4-2",
+      "P3",
+      "FA-1",
+      "K6-2",
+      "K8-2",
+      "K10-2",
+      "DR-4",
+      "F-4",
+      "N1"
+    ],
+    "bloques": null,
+    "criticidades": null,
+    "formas": null,
+    "incluir_anexo_a": false,
+    "casos": [
+      "K0-1",
+      "S-7",
+      "PL-2",
+      "K2-2",
+      "EB-2",
+      "K3-1",
+      "K4-2",
+      "FA-1",
+      "P3",
+      "K6-2",
+      "K8-2",
+      "K10-2",
+      "DR-4",
+      "F-4",
+      "N1"
+    ],
+    "excluidos_por_anexo_A": []
+  },
+  "repeticiones": 2,
+  "unidades_planeadas": [
+    "K0-1|unica|r1",
+    "K0-1|unica|r2",
+    "S-7|unica|r1",
+    "S-7|unica|r2",
+    "PL-2|unica|r1",
+    "PL-2|unica|r2",
+    "K2-2|unica|r1",
+    "K2-2|unica|r2",
+    "EB-2|unica|r1",
+    "EB-2|unica|r2",
+    "K3-1|unica|r1",
+    "K3-1|unica|r2",
+    "K4-2|unica|r1",
+    "K4-2|unica|r2",
+    "FA-1|unica|r1",
+    "FA-1|unica|r2",
+    "P3|A|r1",
+    "P3|A|r2",
+    "P3|B|r1",
+    "P3|B|r2",
+    "K6-2|unica|r1",
+    "K6-2|unica|r2",
+    "K8-2|unica|r1",
+    "K8-2|unica|r2",
+    "K10-2|unica|r1",
+    "K10-2|unica|r2",
+    "DR-4|unica|r1",
+    "DR-4|unica|r2",
+    "F-4|unica|r1",
+    "F-4|unica|r2",
+    "N1|unica|r1",
+    "N1|unica|r2"
+  ],
+  "huellas": {
+    "casos_ejecutables": "3d3178f9a47d0d7d6d17e37ef29d0aa4a37f65a6bce299719f19c73b1b67a3d7",
+    "plataforma": "d495ea5477caab8d81c162138e65f26716b9b451e4ec6f4c5d2a83e30de617ee",
+    "instrucciones_enviadas": "f2dd95768d6ce5a460644b8d4460303d3d882dc649ea07bda94ad2e3bf4c3e0b",
+    "indice": "71baaa5e12310c88bcbdf8cabe218fe612b6992e1ea0b97679a4c663298847fe",
+    "recursos_ayuda": "f8266e1d65852706707368f301cc359e009596dbc51db655721a6b74e5706046",
+    "bloque_recursos_enviado": "80a99eba544a5eb8f102075c76a08c6cb8038c1809a7bd18d9482db92c371a5e",
+    "codigo_nucleo": "a6f7112444f1559aae6ff3e16e335f4e34a52ead617120b321ebdea84f1a848e",
+    "constitucion": "e4a700f848f27d23351ab2d4768f6f18b279d8d6413a06d54c8d623594578e36",
+    "anexo_A": "72b2ae80517550761d8e2d7a20e546233a46a3c2d23f2b8dadc28c0ee267dd90",
+    "anexo_B": "d0d481540b6aac182e406ae96778558e943a98ee3bd26b0f28aed4f0005a0d36",
+    "generador_casos": "1c6a43a8894f925e8ef299c0f3740a3a8881a159664d0ea924fe867f0e319b2a",
+    "guiones": "8398dde51a6514336943a8751dfa2ffb91e76678e6d934f3311524bb148f9b14",
+    "corpus": "f0bc5cffacafffd61c3bffa94e92e118eab7cb120841a662b049447ab40ff622",
+    "aprobaciones": "1d4ac8d03f522533a69b12490ad3c170633f1268e71f0d99d26d546c890e18ec"
+  },
+  "aprobaciones_al_crear": {
+    "_nota": "Lo edita solo el custodio. Una evaluación de CONFORMIDAD exige que todos estos elementos digan exactamente \"aprobado\". Las corridas exploratorias no dependen de este archivo, y nunca declaran conformidad.",
+    "constitucion": {
+      "estado": "no aprobada",
+      "version": "Harry 1.0"
+    },
+    "anexo_A": {
+      "estado": "no aprobado",
+      "version": "Harry 1.0"
+    },
+    "umbrales_de_evaluacion": {
+      "estado": "no aprobados",
+      "version": "propuesta 1.0"
+    },
+    "conjunto_de_pruebas": {
+      "estado": "no aprobado",
+      "version": "1.0"
+    },
+    "instrucciones_operativas": {
+      "estado": "no aprobadas",
+      "version": "borrador 0.1"
+    }
+  },
+  "estado_documentos": {
+    "constitucion": "Estado: propuesta para aprobación del custodio. No aprobada todavía. No entra en vigor hasta que el custodio la apruebe expresamente (Art. 15).",
+    "anexo_A": "EN REVISIÓN. NO APROBADO. La revisión de los nueve puntos clínicos está en `revision_anexo_A.md`. Este texto no ha cambiado de sustancia respecto de Umbral 1.0 ni de Nell 1.0: solo se cambió el nombre",
+    "anexo_B": "no declarado",
+    "generador_casos": "no declarado",
+    "guiones": "no declarado",
+    "corpus": "no declarado",
+    "aprobaciones": "no declarado"
+  },
+  "versiones": {
+    "nucleo": "0.3.0",
+    "python": "3.13.17",
+    "sistema": "Linux 6.18.44-fc-v153 x86_64"
+  },
+  "sesiones": [
+    {
+      "inicio": "2026-10-24T22:06:47+00:00",
+      "codigo_nucleo": "a6f7112444f1559aae6ff3e16e335f4e34a52ead617120b321ebdea84f1a848e",
+      "forzada": false,
+      "adaptador": {
+        "tipo": "simulacion",
+        "modelo": "ninguno (simulación técnica)",
+        "version": "simulacion-0.3.0",
+        "simulada": true
+      },
+      "preparacion": {
+        "servidor": "no aplica",
+        "modelo_cargado": "ninguno"
+      },
+      "fin": "2026-10-24T22:06:47+00:00"
+    }
+  ],
+  "historial_estados": [
+    {
+      "estado": "en_curso",
+      "hora": "2026-10-24T22:06:47+00:00"
+    },
+    {
+      "estado": "terminada",
+      "hora": "2026-10-24T22:06:47+00:00"
+    }
+  ]
+}

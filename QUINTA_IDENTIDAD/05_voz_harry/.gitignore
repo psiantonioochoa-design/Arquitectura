@@ -1,0 +1,7 @@
+# Entornos, pesos y cachés: se crean en cada equipo y no se versionan
+entornos/
+modelos/
+.cache/
+__pycache__/
+# Registros locales (rutas del equipo, salidas de los trabajadores)
+evaluacion/registros/

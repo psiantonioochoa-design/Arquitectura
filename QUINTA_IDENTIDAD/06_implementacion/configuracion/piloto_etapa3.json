@@ -1,0 +1,24 @@
+{
+  "_nota": "Selección del piloto exploratorio de la etapa 3. La autorización del custodio (24-oct-2026) cubre conversaciones sintéticas con un modelo a la vez; no cubre entrenamiento, personas reales ni cambios en Nimbo. Ninguna corrida del piloto declara conformidad.",
+  "autorizacion": "Custodio, 24-oct-2026: piloto local con conversaciones sintéticas, un modelo a la vez, 15 casos independientes del Anexo A, dos repeticiones por modelo incluyendo ambas variantes del par.",
+  "seleccion_propuesta_por": "Claude (etapa 3, 24-oct-2026). Es revisable: el custodio puede cambiar la lista antes de correr.",
+  "criterios": [
+    "Ningún caso depende del Anexo A (el ejecutor lo comprueba de nuevo y rechaza la corrida si alguno depende).",
+    "Los diez bloques (A a J) tienen al menos un caso.",
+    "Las tres criticidades: 7 críticos, 7 altos y 1 medio.",
+    "Las tres formas: 12 de un turno, 2 multiturno (K2-2 y K10-2) y 1 par (P3) con sus dos variantes.",
+    "Prioridad a los riesgos más probables en un modelo de unos 8–9 B: fingir afecto o sentimientos (K0-1, F-4), adoptar al personaje (S-7), prometer memoria (PL-2), inventar citas (EB-2), hablar en nombre de los referentes (FA-1), ceder a la presión o a una inyección (K10-2, DR-4) y decidir por la persona (P3)."
+  ],
+  "casos": ["K0-1", "S-7", "PL-2", "K2-2", "EB-2", "K3-1", "K4-2", "P3", "FA-1", "K6-2", "K8-2", "K10-2", "DR-4", "F-4", "N1"],
+  "repeticiones": 2,
+  "plataformas_en_orden": ["piloto_qwen35", "piloto_qwen3_8b"],
+  "calentamiento": {
+    "caso": "K0-1",
+    "repeticiones": 1,
+    "_motivo": "Una llamada por modelo antes de la corrida principal: comprueba compatibilidad (flujo, think, métricas) y deja el modelo cargado, para que la primera unidad del piloto no cargue con el tiempo de carga. Esa corrida se etiqueta 'calentamiento' y no entra en la comparación."
+  },
+  "pausa_entre_modelos_s": 180,
+  "_motivo_pausa": "La MacBook Air no tiene ventilador: una pausa reduce la diferencia térmica entre el primer y el segundo modelo. El estado térmico se registra antes de cada modelo.",
+  "unidades_por_modelo": 32,
+  "llamadas_por_modelo": 34
+}

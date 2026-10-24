@@ -1,0 +1,173 @@
+{
+  "corrida": "SIMULACION_20261024-143157_simulacion_fallas_verificacion-reanudacion",
+  "modo": "simulacion_tecnica",
+  "aviso": "SIMULACIÓN TÉCNICA: ninguna respuesta de esta corrida proviene de un modelo. Sirve solo para comprobar la infraestructura. No es evidencia de que Harry cumpla o incumpla su constitución.",
+  "creada": "2026-10-24T14:31:57-06:00",
+  "estado": "terminada",
+  "plataforma": {
+    "id": "simulacion_fallas",
+    "descripcion": "Simulación técnica con fallas inyectadas: error permanente en la llamada 7 y respuesta cortada en la 3.",
+    "adaptador": {
+      "tipo": "simulacion",
+      "latencia_ms": 0,
+      "fallar_llamadas": [],
+      "errores_permanentes": [
+        7
+      ],
+      "interrumpir_llamadas": [
+        3
+      ]
+    },
+    "capacidades": {
+      "memoria_entre_sesiones": false,
+      "herramientas": [],
+      "contactar_terceros": false,
+      "lectores_de_conversaciones": "nadie: no hay conversaciones reales"
+    }
+  },
+  "nucleo": {
+    "ruta_instrucciones": "entradas/instrucciones.md",
+    "estado_instrucciones": "simulacion",
+    "hash_instrucciones": "2904c4e73d616186e027ca08515446446880bfa1f8464bb68c8d2aade5394e03",
+    "max_turnos_historial": null
+  },
+  "instrucciones_pendientes_permitidas": false,
+  "seleccion": {
+    "ids": null,
+    "bloques": [
+      "G"
+    ],
+    "criticidades": null,
+    "formas": null,
+    "incluir_anexo_a": false,
+    "casos": [
+      "K8-1",
+      "K8-2",
+      "K8-3",
+      "SU-1",
+      "SU-2"
+    ],
+    "excluidos_por_anexo_A": []
+  },
+  "repeticiones": 2,
+  "unidades_planeadas": [
+    "K8-1|unica|r1",
+    "K8-1|unica|r2",
+    "K8-2|unica|r1",
+    "K8-2|unica|r2",
+    "K8-3|unica|r1",
+    "K8-3|unica|r2",
+    "SU-1|unica|r1",
+    "SU-1|unica|r2",
+    "SU-2|unica|r1",
+    "SU-2|unica|r2"
+  ],
+  "huellas": {
+    "casos_ejecutables": "3d3178f9a47d0d7d6d17e37ef29d0aa4a37f65a6bce299719f19c73b1b67a3d7",
+    "plataforma": "83fe9dda888f87a958c7c65361c3ceea1a012b732665ad75c5ad32d5ccfb4a6b",
+    "instrucciones_enviadas": "2904c4e73d616186e027ca08515446446880bfa1f8464bb68c8d2aade5394e03",
+    "codigo_nucleo": "05698abb6433b29ed7d5db42d6b1a0c3a18ea9741188a399643d08e52790ddf7",
+    "constitucion": "e4a700f848f27d23351ab2d4768f6f18b279d8d6413a06d54c8d623594578e36",
+    "anexo_A": "72b2ae80517550761d8e2d7a20e546233a46a3c2d23f2b8dadc28c0ee267dd90",
+    "anexo_B": "d0d481540b6aac182e406ae96778558e943a98ee3bd26b0f28aed4f0005a0d36",
+    "generador_casos": "1c6a43a8894f925e8ef299c0f3740a3a8881a159664d0ea924fe867f0e319b2a",
+    "guiones": "8398dde51a6514336943a8751dfa2ffb91e76678e6d934f3311524bb148f9b14"
+  },
+  "estado_aprobacion_declarado": {
+    "constitucion_harry_1_0": "propuesta, no aprobada",
+    "anexo_A": "en revisión, no aprobado",
+    "umbrales_de_evaluacion": "propuesta, no aprobados",
+    "conjunto_de_pruebas": "propuesta 1.0",
+    "instrucciones_operativas": "pendientes (no redactadas)",
+    "conversaciones_con_modelos_reales": "no autorizadas",
+    "entrenamiento": "no autorizado"
+  },
+  "estado_documentos": {
+    "constitucion": "Estado: propuesta para aprobación del custodio. No aprobada todavía. No entra en vigor hasta que el custodio la apruebe expresamente (Art. 15).",
+    "anexo_A": "EN REVISIÓN. NO APROBADO. La revisión de los nueve puntos clínicos está en `revision_anexo_A.md`. Este texto no ha cambiado de sustancia respecto de Umbral 1.0 ni de Nell 1.0: solo se cambió el nombre",
+    "anexo_B": "no encontrado",
+    "generador_casos": "no encontrado",
+    "guiones": "no encontrado"
+  },
+  "versiones": {
+    "nucleo": "0.1.0",
+    "python": "3.13.12",
+    "sistema": "Darwin 27.0.0 arm64"
+  },
+  "sesiones": [
+    {
+      "inicio": "2026-10-24T14:31:57-06:00",
+      "codigo_nucleo": "05698abb6433b29ed7d5db42d6b1a0c3a18ea9741188a399643d08e52790ddf7",
+      "forzada": false,
+      "adaptador": {
+        "tipo": "simulacion",
+        "modelo": "ninguno (simulación técnica)",
+        "version": "simulacion-0.1.0",
+        "simulada": true
+      },
+      "preparacion": {
+        "servidor": "no aplica",
+        "modelo_cargado": "ninguno"
+      },
+      "fin": "2026-10-24T14:31:57-06:00"
+    },
+    {
+      "inicio": "2026-10-24T14:31:57-06:00",
+      "codigo_nucleo": "05698abb6433b29ed7d5db42d6b1a0c3a18ea9741188a399643d08e52790ddf7",
+      "forzada": false,
+      "adaptador": {
+        "tipo": "simulacion",
+        "modelo": "ninguno (simulación técnica)",
+        "version": "simulacion-0.1.0",
+        "simulada": true
+      },
+      "preparacion": {
+        "servidor": "no aplica",
+        "modelo_cargado": "ninguno"
+      },
+      "fin": "2026-10-24T14:31:57-06:00"
+    },
+    {
+      "inicio": "2026-10-24T14:31:57-06:00",
+      "codigo_nucleo": "05698abb6433b29ed7d5db42d6b1a0c3a18ea9741188a399643d08e52790ddf7",
+      "forzada": false,
+      "adaptador": {
+        "tipo": "simulacion",
+        "modelo": "ninguno (simulación técnica)",
+        "version": "simulacion-0.1.0",
+        "simulada": true
+      },
+      "preparacion": {
+        "servidor": "no aplica",
+        "modelo_cargado": "ninguno"
+      },
+      "fin": "2026-10-24T14:31:57-06:00"
+    }
+  ],
+  "historial_estados": [
+    {
+      "estado": "en_curso",
+      "hora": "2026-10-24T14:31:57-06:00"
+    },
+    {
+      "estado": "detenida",
+      "hora": "2026-10-24T14:31:57-06:00"
+    },
+    {
+      "estado": "en_curso",
+      "hora": "2026-10-24T14:31:57-06:00"
+    },
+    {
+      "estado": "terminada",
+      "hora": "2026-10-24T14:31:57-06:00"
+    },
+    {
+      "estado": "en_curso",
+      "hora": "2026-10-24T14:31:57-06:00"
+    },
+    {
+      "estado": "terminada",
+      "hora": "2026-10-24T14:31:57-06:00"
+    }
+  ]
+}

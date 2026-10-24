@@ -1,0 +1,4 @@
+# Piper (OHF-Voice/piper1-gpl). Licencia del código: GPL-3.0-or-later. Rueda para macOS arm64 verificada en PyPI (24-oct-2026).
+piper-tts==1.8.0
+onnxruntime==1.31.0
+numpy

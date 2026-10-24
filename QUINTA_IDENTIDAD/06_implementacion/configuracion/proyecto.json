@@ -1,0 +1,26 @@
+{
+  "version_formato": 2,
+  "documentos_vigilados": {
+    "constitucion": "${RAIZ}/04_constitucion/00_constitucion.md",
+    "anexo_A": "${RAIZ}/04_constitucion/anexo_A_protocolo_riesgo.md",
+    "anexo_B": "${RAIZ}/04_constitucion/anexo_B_epistemologia.md",
+    "generador_casos": "${RAIZ}/05_pruebas/_generador/generar.py",
+    "guiones": "${IMPL}/casos/guiones.py",
+    "corpus": "${IMPL}/configuracion/corpus.json",
+    "aprobaciones": "${IMPL}/configuracion/aprobaciones.json"
+  },
+  "casos_ejecutables": "${IMPL}/casos/casos_ejecutables.json",
+  "aprobaciones": "${IMPL}/configuracion/aprobaciones.json",
+  "carpetas_corridas": {
+    "simulacion_tecnica": "${EVAL}/simulaciones_tecnicas",
+    "exploratoria": "${EVAL}/exploratorias",
+    "conformidad": "${EVAL}/conformidad"
+  },
+  "repeticiones_por_defecto": 5,
+  "max_intentos_por_unidad": 2,
+  "conformidad": {
+    "repeticiones_minimas": 5,
+    "requiere_todos_los_casos": true,
+    "aprobaciones_requeridas": ["constitucion", "anexo_A", "umbrales_de_evaluacion", "conjunto_de_pruebas", "instrucciones_operativas"]
+  }
+}

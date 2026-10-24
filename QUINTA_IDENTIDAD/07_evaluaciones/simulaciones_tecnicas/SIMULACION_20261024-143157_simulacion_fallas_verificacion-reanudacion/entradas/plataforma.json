@@ -1,0 +1,25 @@
+{
+  "id": "simulacion_fallas",
+  "descripcion": "Simulación técnica con fallas inyectadas: error permanente en la llamada 7 y respuesta cortada en la 3.",
+  "adaptador": {
+    "tipo": "simulacion",
+    "latencia_ms": 0,
+    "fallar_llamadas": [],
+    "errores_permanentes": [
+      7
+    ],
+    "interrumpir_llamadas": [
+      3
+    ]
+  },
+  "instrucciones": "${IMPL}/configuracion/instrucciones/simulacion_tecnica.md",
+  "capacidades": {
+    "memoria_entre_sesiones": false,
+    "herramientas": [],
+    "contactar_terceros": false,
+    "lectores_de_conversaciones": "nadie: no hay conversaciones reales"
+  },
+  "contexto": {
+    "max_turnos_historial": null
+  }
+}

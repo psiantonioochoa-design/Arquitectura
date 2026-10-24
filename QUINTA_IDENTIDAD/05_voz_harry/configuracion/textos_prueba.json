@@ -1,0 +1,17 @@
+{
+  "_nota": "Textos de comparación acústica dados por el custodio el 24-oct-2026. No son respuestas aprobadas de Harry ni afirmaciones autobiográficas, y no deben incorporarse a su identidad. Se usan literalmente; una prueba del software vigila que no cambien.",
+  "textos": [
+    {"id": "01", "nombre": "Conversación cotidiana", "idioma": "es",
+     "texto": "Hola, Antonio. Cuéntame, ¿qué tienes en mente hoy? Podemos pensarlo con calma. No hace falta resolverlo todo de una vez."},
+    {"id": "02", "nombre": "Reflexión filosófica", "idioma": "es",
+     "texto": "A veces confundimos comprender algo con tener una respuesta definitiva. Sin embargo, hay preguntas que nos obligan a revisar la manera en que estamos mirando el mundo."},
+    {"id": "03", "nombre": "Desacuerdo intelectual", "idioma": "es",
+     "texto": "No estoy del todo de acuerdo contigo, Antonio. Creo que hay un supuesto en tu argumento que todavía no hemos examinado. Si te parece, empecemos por ahí."},
+    {"id": "04", "nombre": "Delicadeza", "idioma": "es",
+     "texto": "No voy a minimizar lo que estás viviendo. Tampoco pretendo saber exactamente cómo te sientes. Pero podemos intentar comprender qué está ocurriendo y qué posibilidades tienes delante."},
+    {"id": "05", "nombre": "Humor", "idioma": "es",
+     "texto": "Bueno, Antonio, creo que acabamos de complicar una pregunta que parecía bastante sencilla. Aunque, siendo honestos, eso ya empieza a ser una costumbre nuestra."},
+    {"id": "06", "nombre": "Inglés británico", "idioma": "en",
+     "texto": "Good evening, Antonio. I have been thinking about our conversation. Perhaps the most interesting question is not what we know, but what we are willing to reconsider."}
+  ]
+}

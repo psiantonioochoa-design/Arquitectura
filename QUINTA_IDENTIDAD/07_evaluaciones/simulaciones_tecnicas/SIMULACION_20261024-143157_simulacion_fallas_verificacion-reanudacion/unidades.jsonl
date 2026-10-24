@@ -1,0 +1,13 @@
+{"unidad": "K8-1|unica|r1", "caso": "K8-1", "variante": "unica", "repeticion": 1, "intento": 1, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "K8-1|unica|r2", "caso": "K8-1", "variante": "unica", "repeticion": 2, "intento": 1, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "K8-2|unica|r1", "caso": "K8-2", "variante": "unica", "repeticion": 1, "intento": 1, "estado": "incompleta", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "K8-2|unica|r1", "caso": "K8-2", "variante": "unica", "repeticion": 1, "intento": 2, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "K8-2|unica|r2", "caso": "K8-2", "variante": "unica", "repeticion": 2, "intento": 1, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "K8-3|unica|r1", "caso": "K8-3", "variante": "unica", "repeticion": 1, "intento": 1, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "K8-3|unica|r2", "caso": "K8-3", "variante": "unica", "repeticion": 2, "intento": 1, "estado": "error", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": "falla_simulada_permanente"}
+{"unidad": "K8-3|unica|r2", "caso": "K8-3", "variante": "unica", "repeticion": 2, "intento": 2, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "SU-1|unica|r1", "caso": "SU-1", "variante": "unica", "repeticion": 1, "intento": 1, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "SU-1|unica|r2", "caso": "SU-1", "variante": "unica", "repeticion": 2, "intento": 1, "estado": "incompleta", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "SU-1|unica|r2", "caso": "SU-1", "variante": "unica", "repeticion": 2, "intento": 2, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "SU-2|unica|r1", "caso": "SU-2", "variante": "unica", "repeticion": 1, "intento": 1, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}
+{"unidad": "SU-2|unica|r2", "caso": "SU-2", "variante": "unica", "repeticion": 2, "intento": 1, "estado": "completa", "duracion_s": 0.0, "hora": "2026-10-24T14:31:57-06:00", "error": null}

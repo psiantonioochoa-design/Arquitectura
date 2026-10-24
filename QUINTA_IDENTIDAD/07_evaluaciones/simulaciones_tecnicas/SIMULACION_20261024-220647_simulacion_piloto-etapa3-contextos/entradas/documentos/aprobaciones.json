@@ -1,0 +1,8 @@
+{
+  "_nota": "Lo edita solo el custodio. Una evaluación de CONFORMIDAD exige que todos estos elementos digan exactamente \"aprobado\". Las corridas exploratorias no dependen de este archivo, y nunca declaran conformidad.",
+  "constitucion": {"estado": "no aprobada", "version": "Harry 1.0"},
+  "anexo_A": {"estado": "no aprobado", "version": "Harry 1.0"},
+  "umbrales_de_evaluacion": {"estado": "no aprobados", "version": "propuesta 1.0"},
+  "conjunto_de_pruebas": {"estado": "no aprobado", "version": "1.0"},
+  "instrucciones_operativas": {"estado": "no aprobadas", "version": "borrador 0.1"}
+}

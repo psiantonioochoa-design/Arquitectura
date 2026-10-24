@@ -1,0 +1,70 @@
+{
+  "formato": "voz_harry/muestra 1",
+  "archivo": "espeak_prueba__es-419-m3__es__03.wav",
+  "sha256_wav": "a8802e724a5540aee4940e2526f014be855b6378a254f796d3e4b2208c580c35",
+  "fecha": "2026-10-24T22:25:44+00:00",
+  "motor": "espeak_prueba",
+  "motor_detalle": {
+    "motor": "espeak_prueba",
+    "version": "1.52.0",
+    "espeakng_loader": "0.2.4",
+    "frecuencia_muestreo": 22050,
+    "aviso": "motor de prueba de la tubería; no es candidato"
+  },
+  "voz": "es-419+m3",
+  "idioma": "es",
+  "texto": "No estoy del todo de acuerdo contigo, Antonio. Creo que hay un supuesto en tu argumento que todavía no hemos examinado. Si te parece, empecemos por ahí.",
+  "contexto": {
+    "prueba": "03",
+    "nombre_prueba": "Desacuerdo intelectual",
+    "variante": null,
+    "experimental": false
+  },
+  "velocidad_pedida": 1.0,
+  "controles_nativos": {
+    "rate_ppm": 175,
+    "pitch": 50,
+    "voz": "es-419+m3"
+  },
+  "posproceso": "ninguno",
+  "tiempos": {
+    "carga_motor_s": 0.002,
+    "sintesis_s": 0.012,
+    "incluye_carga_de_voz": false,
+    "factor_tiempo_real": 0.001
+  },
+  "memoria": {
+    "rss_max_proceso_mb": 47.2,
+    "rss_actual_mb": 40.3,
+    "nota": "rss_max es el pico del proceso desde que arrancó (incluye cargar el modelo)"
+  },
+  "medidas": {
+    "frecuencia_muestreo": 22050,
+    "duracion_s": 9.529,
+    "voz_s": 9.52,
+    "rms_dbfs": -20.9,
+    "pico_dbfs": -0.0,
+    "recortes": 0,
+    "silencio_pct": 14.5,
+    "f0_mediana_hz": 103.2,
+    "f0_p10_hz": 96.4,
+    "f0_p90_hz": 115.0,
+    "tramos_con_voz_pct": 24.5,
+    "palabras_por_minuto": 170.2,
+    "audio_vacio": false
+  },
+  "equipo": {
+    "etiqueta": "nube-linux-x86_64",
+    "sistema": "Linux 6.18.44-fc-v153",
+    "arquitectura": "x86_64",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "nucleos": 4,
+    "ram_gb": 15.7,
+    "gpu": "no detectada",
+    "es_equipo_de_destino": false,
+    "aviso": "Medido en la nube: NO es una medición de la MacBook Air M4."
+  },
+  "sin_conexion_hf": true,
+  "version_voz_harry": "0.1.0",
+  "aviso": "Muestra de comparación acústica. El texto no es una respuesta aprobada de Harry. Las medidas son objetivas; la valoración auditiva la hace el custodio."
+}

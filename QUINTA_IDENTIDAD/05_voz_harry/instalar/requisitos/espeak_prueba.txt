@@ -1,0 +1,3 @@
+# Motor de PRUEBA de la tubería (no es candidato). eSpeak NG: GPL-3.0. Sin modelos que descargar.
+espeakng-loader==0.2.4
+numpy

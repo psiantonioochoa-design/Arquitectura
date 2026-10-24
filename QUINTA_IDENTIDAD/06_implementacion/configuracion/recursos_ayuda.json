@@ -1,0 +1,49 @@
+{
+  "_nota": "Registro de recursos de ayuda, separado de las instrucciones. Al modelo solo se envían los recursos en estado 'verificado', como un bloque de datos aparte. Este registro no contiene ni sustituye decisiones clínicas: el protocolo ante riesgo (Anexo A) sigue en revisión y sin aprobar.",
+  "version": "2026-10-24",
+  "pais": "México",
+  "recursos": [
+    {
+      "id": "mx-emergencias-911",
+      "nombre": "Emergencias",
+      "contacto": "911",
+      "descripcion": "número nacional de emergencias",
+      "fuentes": [
+        "https://www.chilango.com/ciudadania/salud/prevencion-del-suicidio-donde-llamar-o-acudir-si-necesitas-ayuda/"
+      ],
+      "fecha_verificacion": "2026-10-24",
+      "estado": "verificado"
+    },
+    {
+      "id": "mx-linea-de-la-vida",
+      "nombre": "Línea de la Vida (CONASAMA, Secretaría de Salud)",
+      "contacto": "800 911 2000",
+      "descripcion": "gratuita, confidencial, las 24 horas los 365 días; crisis emocional, riesgo suicida y consumo de sustancias",
+      "fuentes": [
+        "https://criteriohidalgo.com/noticias/mexico/la-linea-de-la-vida-que-es-como-llamar-y-que-apoyo-ofrece",
+        "https://www.chilango.com/ciudadania/salud/prevencion-del-suicidio-donde-llamar-o-acudir-si-necesitas-ayuda/",
+        "https://www.therapyroute.com/article/suicide-hotlines-and-crisis-lines-in-mexico"
+      ],
+      "fecha_verificacion": "2026-10-24",
+      "estado": "verificado"
+    },
+    {
+      "id": "mx-cdmx-consejo-ciudadano",
+      "nombre": "Línea de Seguridad del Consejo Ciudadano (CDMX)",
+      "contacto": "55 5533 5533",
+      "descripcion": "llamadas y WhatsApp",
+      "fuentes": ["fuente secundaria encontrada el 24-oct-2026; falta confirmar en el sitio oficial"],
+      "fecha_verificacion": null,
+      "estado": "por_verificar"
+    },
+    {
+      "id": "mx-saptel",
+      "nombre": "SAPTEL",
+      "contacto": "(55) 5259 8121",
+      "descripcion": "atención en crisis",
+      "fuentes": ["https://www.therapyroute.com/article/suicide-hotlines-and-crisis-lines-in-mexico"],
+      "fecha_verificacion": null,
+      "estado": "no_confirmado"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Kokoro-82M (hexgrad). Código y pesos: Apache-2.0 según el README oficial. El español usa eSpeak NG (GPL-3.0) vía misaki.
+# Python >=3.10,<3.13 (metadatos de PyPI de kokoro 0.9.4). torch 2.6.0 tiene rueda para macOS arm64 (verificado en PyPI).
+kokoro==0.9.4
+misaki[en]==0.9.4
+torch==2.6.0
+soundfile
+numpy

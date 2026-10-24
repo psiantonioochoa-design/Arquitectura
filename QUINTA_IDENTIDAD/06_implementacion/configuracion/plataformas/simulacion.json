@@ -1,0 +1,77 @@
+{
+  "id": "simulacion",
+  "descripcion": "Simulación técnica sin modelo. Usa las instrucciones en borrador y la recuperación real para probar el montaje; sus respuestas no son de Harry ni de ningún modelo.",
+  "adaptador": {
+    "tipo": "simulacion",
+    "latencia_ms": 0,
+    "fallar_llamadas": [],
+    "errores_permanentes": [],
+    "interrumpir_llamadas": []
+  },
+  "instrucciones": "${IMPL}/configuracion/instrucciones/harry_borrador_0.2.md",
+  "capacidades": {
+    "memoria_entre_sesiones": false,
+    "herramientas": [],
+    "contactar_terceros": false,
+    "lectores_de_conversaciones": "nadie: no hay conversaciones reales"
+  },
+  "contexto": {
+    "ventana_tokens": 8192,
+    "reserva_respuesta_tokens": 1024,
+    "max_turnos_historial": 12,
+    "estimacion": {
+      "caracteres_por_token": 3.0,
+      "tokens_por_mensaje": 6
+    },
+    "_nota": "Estimación conservadora sin tokenizador (ver codigo/harry_nucleo/tokens.py). La ventana debe coincidir con num_ctx del modelo."
+  },
+  "recuperacion": {
+    "activa": true,
+    "indice": "${IMPL}/recuperacion/indice.json",
+    "categorias": [
+      "norma_propuesta"
+    ],
+    "bajo_demanda": {
+      "investigacion": {
+        "disparadores": [
+          "heidegger",
+          "dumbledore",
+          "rowling",
+          "harry potter",
+          "papa francisco",
+          "bergoglio",
+          "dostoievski",
+          "dostoyevski",
+          "karamazov",
+          "kirilov",
+          "raskolnikov",
+          "myshkin",
+          "stavroguin",
+          "ser y tiempo",
+          "enciclica",
+          "evangelii",
+          "laudato",
+          "fratelli",
+          "amoris",
+          "dilexit",
+          "antiqua et nova",
+          "scalfari",
+          "gran inquisidor",
+          "bajtin",
+          "guardini",
+          "levinas",
+          "arendt",
+          "jaspers",
+          "trakl"
+        ],
+        "_nota": "La investigación solo se busca si la consulta nombra a un referente o a una obra suya."
+      }
+    },
+    "max_fragmentos": 3,
+    "max_tokens": 900,
+    "relativo_minimo": 0.35,
+    "puntaje_minimo": 1.0,
+    "_nota": "Por defecto, solo normas propuestas pertinentes. El Anexo A (en revisión) y las versiones archivadas nunca se envían."
+  },
+  "recursos_ayuda": "${IMPL}/configuracion/recursos_ayuda.json"
+}

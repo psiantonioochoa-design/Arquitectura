@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voz de Harry · laboratorio local</title>
+<style>
+  :root { --fondo:#f7f7f5; --panel:#ffffff; --texto:#1d1d1f; --suave:#6b6b70; --borde:#d9d9de; --acento:#2b5c8a;
+          --aviso:#8a5a00; --aviso-fondo:#fff4dc; --error:#a12a2a; --ok:#2e6b3a; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fondo:#17171a; --panel:#212126; --texto:#ececf0; --suave:#a0a0a8; --borde:#38383f; --acento:#7fb0e0;
+            --aviso:#f2c46b; --aviso-fondo:#3a2f17; --error:#f08a8a; --ok:#8fd19e; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background:var(--fondo); color:var(--texto); }
+  header { padding:16px 20px; border-bottom:1px solid var(--borde); }
+  h1 { font-size:20px; margin:0 0 4px; }
+  h2 { font-size:16px; margin:0 0 12px; }
+  .sub { color:var(--suave); font-size:13px; }
+  main { display:grid; grid-template-columns: minmax(320px, 440px) 1fr; gap:16px; padding:16px 20px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  section { background:var(--panel); border:1px solid var(--borde); border-radius:10px; padding:16px; }
+  label { display:block; font-size:13px; color:var(--suave); margin:10px 0 4px; }
+  textarea, select, input[type=text] { width:100%; padding:8px; border:1px solid var(--borde); border-radius:6px; background:var(--panel); color:var(--texto); font:inherit; }
+  textarea { min-height:110px; resize:vertical; }
+  .fila { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .fila > * { flex:1; min-width:120px; }
+  input[type=range] { width:100%; }
+  button { padding:8px 12px; border-radius:6px; border:1px solid var(--borde); background:var(--panel); color:var(--texto); cursor:pointer; font:inherit; }
+  button.principal { background:var(--acento); color:#fff; border-color:var(--acento); }
+  button:disabled { opacity:.5; cursor:wait; }
+  .chips button { flex:0 0 auto; min-width:0; font-size:13px; padding:4px 8px; }
+  .etiqueta { display:inline-block; font-size:11px; padding:1px 6px; border-radius:10px; border:1px solid var(--borde); color:var(--suave); }
+  .nativo { color:var(--ok); border-color:var(--ok); }
+  .post { color:var(--aviso); border-color:var(--aviso); }
+  .aviso { background:var(--aviso-fondo); color:var(--aviso); padding:8px 10px; border-radius:6px; font-size:13px; margin:8px 0; }
+  .error { color:var(--error); font-size:13px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  td { padding:3px 4px; border-bottom:1px solid var(--borde); vertical-align:top; }
+  td:first-child { color:var(--suave); width:42%; }
+  audio { width:100%; margin:8px 0; }
+  .tarjetas { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:12px; }
+  .tarjeta { border:1px solid var(--borde); border-radius:8px; padding:10px; }
+  .tarjeta h3 { font-size:14px; margin:0 0 4px; }
+  details summary { cursor:pointer; color:var(--acento); font-size:13px; margin-top:6px; }
+  .valorar label { margin:6px 0 2px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Voz de Harry · laboratorio local</h1>
+  <div class="sub">Texto a audio en este equipo. Separado del razonamiento y de la identidad de Harry: aquí solo se convierte en audio el texto que escribas. Sin micrófono, sin escucha permanente. Solo accesible desde este equipo.</div>
+  <div id="equipo" class="sub"></div>
+  <div id="avisoEquipo"></div>
+</header>
+<main>
+  <section>
+    <h2>Generar</h2>
+    <div class="fila chips" id="textosPrueba"></div>
+    <label for="texto">Texto</label>
+    <textarea id="texto"></textarea>
+    <div class="fila">
+      <div><label for="motor">Motor</label><select id="motor"></select></div>
+      <div><label for="idioma">Idioma</label><select id="idioma"><option value="es">español</option><option value="en">inglés</option></select></div>
+    </div>
+    <label for="voz">Voz</label>
+    <select id="voz"></select>
+    <div id="notaVoz" class="sub"></div>
+    <div id="estadoMotor"></div>
+    <label for="velocidad">Velocidad: <span id="valVelocidad">1.00</span> <span id="tipoVelocidad" class="etiqueta nativo">nativo</span></label>
+    <input id="velocidad" type="range" min="0.5" max="2" step="0.05" value="1">
+    <div id="nativos"></div>
+    <label for="tono">Tono: <span id="valTono">0</span> semitonos <span class="etiqueta post">posproceso</span></label>
+    <input id="tono" type="range" min="-6" max="6" step="0.5" value="0">
+    <div class="sub">El posproceso cambia la señal después del motor; queda declarado en los metadatos de la muestra.</div>
+    <div class="fila" style="margin-top:12px">
+      <label style="flex:2"><input id="experimental" type="checkbox"> permitir combinaciones voz–idioma no previstas (experimental)</label>
+      <button id="generar" class="principal">Generar</button>
+    </div>
+    <div id="error" class="error"></div>
+    <div id="resultado"></div>
+  </section>
+  <section>
+    <h2>Comparar y valorar</h2>
+    <div class="fila">
+      <div><label for="filtroPrueba">Prueba</label><select id="filtroPrueba"></select></div>
+      <div><label for="filtroIdioma">Idioma</label><select id="filtroIdioma"><option value="">todos</option><option value="es">español</option><option value="en">inglés</option></select></div>
+      <div><label for="filtroEquipo">Equipo</label><select id="filtroEquipo"></select></div>
+    </div>
+    <div class="fila" style="margin:10px 0">
+      <label style="flex:2"><input id="ciegas" type="checkbox"> Escucha a ciegas (oculta motor y voz y mezcla el orden)</label>
+      <label style="flex:2"><input id="verPruebas" type="checkbox"> mostrar motores de prueba de la tubería</label>
+      <button id="recargar">Actualizar</button>
+    </div>
+    <div class="aviso">Las medidas son objetivas (tiempos, memoria, tono fundamental). La naturalidad, la calidez o la edad aparente solo las puedes juzgar tú, escuchando; tus valoraciones se guardan en <code>evaluacion/valoraciones.csv</code>.</div>
+    <div id="tarjetas" class="tarjetas"></div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (t) => String(t ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let ESTADO = null;
+
+async function api(ruta, datos) {
+  const op = datos ? {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(datos)} : {};
+  const r = await fetch(ruta, op);
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+
+function opcion(valor, texto) { const o = document.createElement("option"); o.value = valor; o.textContent = texto; return o; }
+
+function pintarMotores() {
+  const sel = $("motor"); sel.innerHTML = "";
+  for (const [id, m] of Object.entries(ESTADO.motores)) {
+    sel.appendChild(opcion(id, `${m.nombre}${m.entorno_listo ? "" : " — sin entorno"}`));
+  }
+  const listo = Object.entries(ESTADO.motores).find(([id, m]) => m.entorno_listo && id !== "espeak_prueba");
+  sel.value = listo ? listo[0] : (ESTADO.motores.espeak_prueba && ESTADO.motores.espeak_prueba.entorno_listo ? "espeak_prueba" : sel.options[0].value);
+}
+
+function pintarVoces() {
+  const motor = $("motor").value, idioma = $("idioma").value, sel = $("voz");
+  sel.innerHTML = "";
+  const vistas = new Set();
+  for (const v of ESTADO.voces.filter(v => v.motor === motor)) {
+    if (vistas.has(v.id)) continue;
+    const ok = ESTADO.voces.some(w => w.motor === motor && w.id === v.id && w.idiomas.includes(idioma));
+    if (!ok && !$("experimental").checked) continue;
+    vistas.add(v.id);
+    sel.appendChild(opcion(v.id, `${v.id} · ${v.acento}${ok ? "" : " (experimental)"}`));
+  }
+  if (motor === "chatterbox") for (const r of ESTADO.referencias_autorizadas) sel.appendChild(opcion(r.id, `${r.id} · referencia autorizada`));
+  pintarNotaVoz(); pintarControles();
+}
+
+function pintarNotaVoz() {
+  const v = ESTADO.voces.find(v => v.motor === $("motor").value && v.id === $("voz").value);
+  $("notaVoz").textContent = v ? `Género declarado: ${v.genero_declarado}. ${v.calificacion_autor ? "Calificación del autor: " + v.calificacion_autor + ". " : ""}${v.verificacion}. ${v.nota || ""}` : "";
+}
+
+function pintarControles() {
+  const m = ESTADO.motores[$("motor").value];
+  $("tipoVelocidad").textContent = m.velocidad_nativa ? "nativo" : "posproceso";
+  $("tipoVelocidad").className = "etiqueta " + (m.velocidad_nativa ? "nativo" : "post");
+  const caja = $("nativos"); caja.innerHTML = "";
+  for (const [nombre, c] of Object.entries(m.controles_nativos || {})) {
+    if (c.min === undefined || c.max === undefined || nombre === "velocidad") continue;
+    const defecto = c.defecto !== undefined ? c.defecto : (c.min + c.max) / 2;
+    const paso = (c.max - c.min) > 10 ? 1 : 0.05;
+    const id = "n_" + c.parametro;
+    caja.insertAdjacentHTML("beforeend",
+      `<label for="${id}">${nombre} (${c.parametro}): <span id="v_${id}">${defecto}</span> <span class="etiqueta nativo">nativo</span></label>
+       <input id="${id}" data-param="${c.parametro}" type="range" min="${c.min}" max="${c.max}" step="${paso}" value="${defecto}">
+       ${c.nota ? `<div class="sub">${c.nota}</div>` : ""}`);
+    $(id).addEventListener("input", e => { $("v_" + id).textContent = e.target.value; });
+  }
+  $("estadoMotor").innerHTML = m.entorno_listo ? "" :
+    `<div class="aviso">El entorno de este motor no está creado en este equipo (instalar/crear_entornos.sh). ${m.estado_descarga || ""}</div>`;
+  if (m.marca_de_agua) $("estadoMotor").insertAdjacentHTML("beforeend", `<div class="sub">${m.marca_de_agua}</div>`);
+}
+
+function tablaMeta(meta) {
+  const m = meta.medidas, t = meta.tiempos, mem = meta.memoria;
+  const filas = [
+    ["Equipo", `${meta.equipo.etiqueta} · ${meta.equipo.cpu}`],
+    ["Duración del audio", `${m.duracion_s} s`],
+    ["Tiempo de síntesis", `${t.sintesis_s} s${t.incluye_carga_de_voz ? " (incluye cargar la voz)" : ""}`],
+    ["Factor de tiempo real", t.factor_tiempo_real],
+    ["Memoria pico del proceso", `${mem.rss_max_proceso_mb} MB`],
+    ["Tono fundamental (F0)", m.f0_mediana_hz ? `mediana ${m.f0_mediana_hz} Hz (p10 ${m.f0_p10_hz} · p90 ${m.f0_p90_hz})` : "—"],
+    ["Ritmo", m.palabras_por_minuto ? `${m.palabras_por_minuto} palabras/min` : "—"],
+    ["Nivel", `RMS ${m.rms_dbfs} dBFS · pico ${m.pico_dbfs} dBFS · recortes ${m.recortes}`],
+    ["Controles nativos", JSON.stringify(meta.controles_nativos)],
+    ["Posproceso", typeof meta.posproceso === "string" ? meta.posproceso : JSON.stringify(meta.posproceso)],
+  ];
+  return "<table>" + filas.map(([a, b]) => `<tr><td>${a}</td><td>${esc(b)}</td></tr>`).join("") + "</table>";
+}
+
+async function generar() {
+  $("error").textContent = ""; $("generar").disabled = true; $("generar").textContent = "Generando…";
+  const nativos = {};
+  document.querySelectorAll("#nativos input[type=range]").forEach(i => nativos[i.dataset.param] = parseFloat(i.value));
+  try {
+    const r = await api("/api/sintetizar", {
+      motor: $("motor").value, voz: $("voz").value, idioma: $("idioma").value, texto: $("texto").value,
+      velocidad: parseFloat($("velocidad").value), tono_semitonos: parseFloat($("tono").value), nativos,
+      experimental: $("experimental").checked,
+    });
+    $("resultado").innerHTML = `<audio controls autoplay src="${r.url}"></audio>
+      <div class="fila"><a href="${r.url}" download>Guardar WAV</a><span class="sub">Guardado también en muestras/${r.ruta}</span></div>
+      ${tablaMeta(r.metadatos)}`;
+    cargarMuestras();
+  } catch (e) { $("error").textContent = e.message; }
+  finally { $("generar").disabled = false; $("generar").textContent = "Generar"; }
+}
+
+let MUESTRAS = [];
+async function cargarMuestras() {
+  MUESTRAS = (await api("/api/muestras")).muestras;
+  const pruebas = [...new Set(MUESTRAS.map(m => m.prueba))].sort();
+  const equipos = [...new Set(MUESTRAS.map(m => m.equipo))].sort();
+  const fp = $("filtroPrueba"), fe = $("filtroEquipo"), vp = fp.value, ve = fe.value;
+  fp.innerHTML = ""; fp.appendChild(opcion("", "todas"));
+  pruebas.forEach(p => fp.appendChild(opcion(p, p)));
+  fe.innerHTML = ""; fe.appendChild(opcion("", "todos"));
+  equipos.forEach(e => fe.appendChild(opcion(e, e)));
+  fp.value = vp; fe.value = ve;
+  pintarTarjetas();
+}
+
+function mezclar(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+
+function pintarTarjetas() {
+  const ciegas = $("ciegas").checked;
+  let lista = MUESTRAS.filter(m => (!$("filtroPrueba").value || m.prueba === $("filtroPrueba").value)
+    && (!$("filtroIdioma").value || m.idioma === $("filtroIdioma").value)
+    && (!$("filtroEquipo").value || m.equipo === $("filtroEquipo").value)
+    && ($("verPruebas").checked || !m.prueba_de_tuberia));
+  if (ciegas) lista = mezclar(lista);
+  const caja = $("tarjetas"); caja.innerHTML = "";
+  if (!lista.length) { caja.innerHTML = `<div class="sub">No hay muestras con estos filtros.</div>`; return; }
+  lista.forEach((m, i) => {
+    const codigo = String.fromCharCode(65 + (i % 26)) + (i >= 26 ? Math.floor(i / 26) : "");
+    const titulo = ciegas ? `Muestra ${codigo}` : esc(`${m.motor} · ${m.voz} · ${m.idioma} · ${m.prueba}`);
+    const marcas = ciegas ? "" : `${m.prueba_de_tuberia ? '<span class="etiqueta post">prueba de tubería, no candidato</span> ' : ""}${m.experimental ? '<span class="etiqueta post">experimental</span> ' : ""}<span class="etiqueta">${esc(m.equipo)}</span>`;
+    const d = document.createElement("div"); d.className = "tarjeta";
+    d.innerHTML = `<h3>${titulo}</h3>${marcas}<audio controls preload="none" src="${m.url}"></audio>
+      ${ciegas ? "" : `<div class="sub">${m.medidas.duracion_s} s · síntesis ${m.tiempos.sintesis_s} s · F0 ${m.medidas.f0_mediana_hz || "—"} Hz · ${m.memoria.rss_max_proceso_mb} MB</div>`}
+      <details><summary>Valorar</summary><div class="valorar">
+        <label>Naturalidad (1–5)</label><select data-c="naturalidad_1_5">${["","1","2","3","4","5"].map(x=>`<option>${x}</option>`).join("")}</select>
+        <label>Inteligibilidad (1–5)</label><select data-c="inteligibilidad_1_5">${["","1","2","3","4","5"].map(x=>`<option>${x}</option>`).join("")}</select>
+        <label>Edad aparente</label><select data-c="edad_aparente">${["","menos de 35","35–45","45–55","55–65","más de 65"].map(x=>`<option>${x}</option>`).join("")}</select>
+        <label>Timbre</label><select data-c="timbre">${["","grave","medio-grave","medio","agudo"].map(x=>`<option>${x}</option>`).join("")}</select>
+        <label>Calidez (1–5)</label><select data-c="calidez_1_5">${["","1","2","3","4","5"].map(x=>`<option>${x}</option>`).join("")}</select>
+        <label>Expresividad (1–5)</label><select data-c="expresividad_1_5">${["","1","2","3","4","5"].map(x=>`<option>${x}</option>`).join("")}</select>
+        <label>¿Solemne o teatral?</label><select data-c="solemne_o_teatral">${["","no","algo","mucho"].map(x=>`<option>${x}</option>`).join("")}</select>
+        <label>Acento (p. ej. «británico del sur», «comprensible en México»)</label><input type="text" data-c="acento">
+        <label>Notas</label><input type="text" data-c="notas">
+        <button style="margin-top:8px">Guardar valoración</button> <span class="sub"></span>
+      </div></details>`;
+    d.querySelector("button").addEventListener("click", async (ev) => {
+      const datos = {muestra: m.ruta, codigo_a_ciegas: ciegas ? codigo : ""};
+      d.querySelectorAll("[data-c]").forEach(x => datos[x.dataset.c] = x.value);
+      try { const r = await api("/api/valorar", datos); ev.target.nextElementSibling.textContent = "Guardada en " + r.guardado; }
+      catch (e) { ev.target.nextElementSibling.textContent = e.message; }
+    });
+    caja.appendChild(d);
+  });
+}
+
+async function iniciar() {
+  ESTADO = await api("/api/estado");
+  const eq = ESTADO.equipo;
+  $("equipo").textContent = `Equipo: ${eq.etiqueta} · ${eq.cpu} · ${eq.ram_gb} GB · ${eq.gpu} · ffmpeg ${ESTADO.ffmpeg ? "sí" : "no"}`;
+  $("avisoEquipo").innerHTML = `<div class="aviso">${eq.aviso}</div>`;
+  ESTADO.textos.forEach(t => {
+    const b = document.createElement("button"); b.textContent = `${t.id} · ${t.nombre}`;
+    b.addEventListener("click", () => { $("texto").value = t.texto; $("idioma").value = t.idioma; pintarVoces(); });
+    $("textosPrueba").appendChild(b);
+  });
+  $("texto").value = ESTADO.textos[0].texto;
+  pintarMotores(); pintarVoces();
+  $("motor").addEventListener("change", pintarVoces);
+  $("idioma").addEventListener("change", pintarVoces);
+  $("experimental").addEventListener("change", pintarVoces);
+  $("voz").addEventListener("change", pintarNotaVoz);
+  $("velocidad").addEventListener("input", e => $("valVelocidad").textContent = parseFloat(e.target.value).toFixed(2));
+  $("tono").addEventListener("input", e => $("valTono").textContent = e.target.value);
+  $("generar").addEventListener("click", generar);
+  ["filtroPrueba", "filtroIdioma", "filtroEquipo", "ciegas", "verPruebas"].forEach(id => $(id).addEventListener("change", pintarTarjetas));
+  $("recargar").addEventListener("click", cargarMuestras);
+  cargarMuestras();
+}
+iniciar().catch(e => { document.body.insertAdjacentHTML("afterbegin", `<p class="error">${e.message}</p>`); });
+</script>
+</body>
+</html>
